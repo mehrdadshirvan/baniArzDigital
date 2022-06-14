@@ -1,4 +1,24 @@
 :root {
-    --main-color: "#313131";
+    --main-color: "#0b9890";
 }
 
+.text-main{
+    color: var(--main-color);
+}
+
+.text-main-hover{
+    color: var(--main-color);
+}
+
+.top-bar-bg{
+    background-image: url(../public/images/top-bar-bg.jpg);
+}
+.bg-attachment-fixed{
+    background-attachment: fixed;
+}
+.bg-repeat-none{
+    background-repeat: no-repeat;
+}
+.bg-position-center{
+    background-position: center center;
+}
