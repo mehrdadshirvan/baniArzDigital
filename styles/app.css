@@ -1,24 +1,155 @@
+@import "./size.css";
+
+@font-face {
+    font-family: IRANSans;
+    font-style: normal;
+    font-weight: normal;
+    src: url('./../public/fonts/iransans/eot/IRANSansWeb.eot');
+    src: url('./../public/fonts/iransans/eot/IRANSansWeb.eot?#iefix') format('embedded-opentype'), /* IE6-8 */ url('./../public/fonts/iransans/woff2/IRANSansWeb.woff2') format('woff2'), /* FF39+,Chrome36+, Opera24+*/ url('./../public/fonts/iransans/woff/IRANSansWeb.woff') format('woff'), /* FF3.6+, IE9, Chrome6+, Saf5.1+*/ url('./../public/fonts/iransans/ttf/IRANSansWeb.ttf') format('truetype');
+}
+
+
 :root {
-    --main-color: "#0b9890";
+    --main-color: 52, 224, 198;
+    --text-color: "#3b3b3b";
+    --menu-parent-font-size: "12px";
+    --heading-size: "24px";
+    --heading-size-mobile: "18px";
+    --border-radius-1: "10px";
+    --border-radius-2: "15px";
+    --border-radius-3: "20px";
+    --main-font-family: "IRANSANS"
 }
 
-.text-main{
-    color: var(--main-color);
+body {
+    background: #f8f8f9;
 }
 
-.text-main-hover{
-    color: var(--main-color);
+body, .tooltip, .h1, .h2, .h3, .h4, .h5, .h6, h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, a, p, span {
+    font-family: var(--main-font-family), serif !important;
 }
 
-.top-bar-bg{
-    background-image: url(../public/images/top-bar-bg.jpg);
+.iransans {
+    font-family: var(--main-font-family) !important;
 }
-.bg-attachment-fixed{
+
+.text-justify {
+    text-align: justify;
+    word-wrap: break-word;
+}
+
+.rtl {
+    direction: rtl !important;
+}
+
+.ltr {
+    direction: ltr !important;
+}
+a:hover{
+    transition: 0.5s ease;
+    color: rgb(var(--main-color)) !important;
+}
+.transition_50 {
+    transition: all 0.5s ease;
+}
+.border-radius-theme-1{
+    border-radius: var(--border-radius-1);
+}
+.border-radius-theme-2{
+    border-radius: var(--border-radius-2);
+}
+.border-radius-theme-3{
+    border-radius: var(--border-radius-3);
+}
+#nprogress .bar {
+    height: 4px;
+    background: rgb(var(--main-color)) !important;
+}
+
+.text-main {
+    color: rgb(var(--main-color));
+}
+
+.text-main-hover {
+    color: rgb(var(--main-color));
+}
+
+.bg-attachment-fixed {
     background-attachment: fixed;
 }
-.bg-repeat-none{
+
+.bg-repeat-none {
     background-repeat: no-repeat;
 }
-.bg-position-center{
+
+.bg-position-center {
     background-position: center center;
+}
+
+.line-height {
+    line-height: 2;
+}
+.heading-size{
+    font-size: var(--heading-size);
+}
+
+/* header */
+#header {
+    box-shadow: 0px 0px 13px 5px #efefef;
+    margin-bottom: 10px;
+    background: #fff;
+}
+
+#main-header {
+    padding: 10px 0px;
+}
+
+#main-header div.logo {
+
+}
+
+#main-header div.logo img {
+    width: 50%;
+    display: block;
+    margin-left: 10px;
+    float: left;
+}
+
+#main-header div.menu {
+}
+
+#main-header div.menu ul {
+    list-style: none;
+}
+
+#main-header div.menu ul li {
+    float: right;
+}
+
+#main-header div.menu ul li a {
+    display: inline-block;
+    text-decoration: none;
+    padding: 10px 10px;
+    color: var(--text-color);
+    font-size: 12px;
+}
+
+#main-header div.menu ul li a:hover {
+    color: rgb(var(--main-color)) !important;
+}
+
+#main-header div.menu ul li a i {
+}
+
+#header #top-bar {
+    background-image: url('/images/top-bar-bg.jpg');
+    height: 45px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    width: 100%;
+}
+
+#footer {
+    background: rgb(89, 89, 86);
 }
