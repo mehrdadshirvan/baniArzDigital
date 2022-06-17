@@ -5,6 +5,7 @@ import {useState} from "react";
 import Input from "../component/forms/input";
 import Textarea from "../component/forms/textarea";
 import HeadInclude from '../include/headInclude';
+import {MdMap, MdSettingsPhone, MdMarkEmailUnread} from "react-icons/md";
 
 function ContactUs(props) {
     const [form, setForm] = useState({
@@ -14,6 +15,10 @@ function ContactUs(props) {
         'subject': "",
         'content': "",
     });
+
+    const [message, setMessage] = useState({
+        "message": ""
+    })
 
 
     const SetData = (event) => {
@@ -41,8 +46,6 @@ function ContactUs(props) {
 
             <main className={`container bg-white shadow-sm p-4 border-radius-theme my-4`}>
 
-
-
                 <div className="row">
                     <div className="col-md-6">
                         <div className="">
@@ -53,7 +56,7 @@ function ContactUs(props) {
                                 <div className="col-sm-12">
                                     <div className="contact-item">
                                         <p className="mb-2 text-secondary font-15 fw-bold">
-                                            <i className="icon map location"></i>
+                                            <MdMap  className={`font-18`}/>
                                             آدرس
                                         </p>
                                         <p className="px-4 text-secondary font-14">
@@ -64,7 +67,7 @@ function ContactUs(props) {
                                 <div className="col-sm-6">
                                     <div className="contact-item">
                                         <p className="mb-2 text-secondary font-15 fw-bold">
-                                            <i className="icon phone volume"></i>
+                                            <MdSettingsPhone  className={`font-18`}/>
                                             تلفن:
                                         </p>
                                         <p className="px-4 text-secondary font-14">
@@ -79,11 +82,11 @@ function ContactUs(props) {
                                 <div className="col-sm-6">
                                     <div className="contact-item">
                                         <p className="mb-2 text-secondary font-15 fw-bold">
-                                            <i className="icon envelope outline"></i>
+                                            <MdMarkEmailUnread  className={`font-18`}/>
                                             ایمیل:
                                         </p>
                                         <p className="px-4 text-secondary font-14">
-                                            <a href="mailTo:ictu@qiau.ac.ir"
+                                            <a href="mailTo:info@baniarzdigital.com"
                                                className="text-decoration-none "
                                                dir="ltr">
                                                 info [at] baniarzdigital.com
@@ -115,11 +118,16 @@ function ContactUs(props) {
                                 برای ارسال پیام (نظر - پیشنهاد - سوال و ...) لطفا فرم زیر را پر کنید
                             </p>
 
-                            <div className="alert d-block alert-success w-100">
-                                <p className="m-0">
-                                    درخواست شما با موفقیت ارسال شد
-                                </p>
-                            </div>
+                            {
+                                message.message !== ""
+                                    ? (
+                                        <div className="alert d-block alert-success w-100">
+                                            <p className="m-0">{ message.message }</p>
+                                        </div>
+                                    )
+                                    : null
+                            }
+
 
                             <form action="/"
                                   method="post">
@@ -133,7 +141,7 @@ function ContactUs(props) {
                                                name={"full_name"}
                                                onChange={SetData}
                                                value={form.full_name}
-                                               required={true} />
+                                               required={true}/>
                                     </div>
                                     <div className="col-sm-6">
                                         <Input label={"شماره موبایل"}
@@ -141,7 +149,7 @@ function ContactUs(props) {
                                                type="mobile"
                                                value={form.mobile}
                                                onChange={SetData}
-                                               required={true} />
+                                               required={true}/>
                                     </div>
                                     <div className="col-sm-6">
                                         <Input label={"آدرس ایمیل"}
@@ -149,7 +157,7 @@ function ContactUs(props) {
                                                type="email"
                                                value={form.email}
                                                onChange={SetData}
-                                               required={true} />
+                                               required={true}/>
                                     </div>
                                     <div className="col-sm-12">
                                         <Input label={"موضوع"}
@@ -157,15 +165,15 @@ function ContactUs(props) {
                                                type="text"
                                                value={form.subject}
                                                onChange={SetData}
-                                               required={true} />
+                                               required={true}/>
                                     </div>
                                     <div className="col-sm-12">
-                                            <Textarea label={"متن درخواست"}
-                                                      name="content"
-                                                      onChange={SetData}
-                                                      required={true}
-                                                      value={form.mobile}
-                                                      rows="6" />
+                                        <Textarea label={"متن درخواست"}
+                                                  name="content"
+                                                  onChange={SetData}
+                                                  required={true}
+                                                  value={form.mobile}
+                                                  rows="6"/>
                                     </div>
                                 </div>
                                 <div className="row my-4">

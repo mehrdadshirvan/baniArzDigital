@@ -3,10 +3,12 @@ import Image from 'next/image'
 import Footer from './include/footer';
 import Header from './include/header';
 import HeadInclude from "./include/headInclude";
+import Link from "next/link";
 
 function Home(props) {
     return (
-        <div className={`app`} dir={`rtl`}>
+        <div className={`app`}
+             dir={`rtl`}>
             <Head>
                 <HeadInclude/>
                 <title>صفحه اصلی | بانی ارز دیجیتال</title>
@@ -16,13 +18,29 @@ function Home(props) {
                       href="/favicon.ico"/>
             </Head>
 
-            <Header />
+            <Header/>
 
-                <main className={``} >
+            <main className={``}>
 
-                </main>
 
-            <Footer />
+                <div className={`container mb-3`}>
+                    <div className={`row`}>
+                        <div className={`col-12`}>
+                            <Link href={'/'}>
+                                <a className={'overflow-hidden border-radius-theme-2'}>
+                                    <img src="./adv/adv-23.jpg"
+                                         className={`d-block m-auto w-100 border-radius-theme-3`}
+                                         alt="adv"/>
+                                </a>
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+
+
+            </main>
+
+            <Footer/>
         </div>
     )
 }
