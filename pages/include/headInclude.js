@@ -19,6 +19,7 @@ function HeadInclude(props) {
                   content="fa"/>
             <meta name="robots"
                   content="index,follow"/>
+            <link rel="icon" href="/favicon.ico"/>
         </>);
 }
 

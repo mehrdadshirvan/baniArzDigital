@@ -144,7 +144,6 @@ a:hover{
 #header #top-bar {
     background-image: url('/images/top-bar-bg.jpg');
     height: 45px;
-    background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed;
     width: 100%;

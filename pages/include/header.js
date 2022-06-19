@@ -4,10 +4,11 @@ import Link from "next/link";
 function Footer(props) {
     return (
         <header id={`header`}>
-            <div id={'top-bar'} className={`container-fluid top-bar-bg bg-repeat-none bg-attachment-fixed bg-position-center`}>
+            <div id={'top-bar'} className={`container-fluid top-bar-bg bg-repeat-none bg-attachment-fixed`}>
                 <div className={`container`}>
                     <div className={`row`}>
                         <div className={`col-12`}>
+                            s ada
                         </div>
                     </div>
                 </div>
@@ -53,5 +54,16 @@ function Footer(props) {
         </header>
     );
 }
+
+
+export async function getServerSideProps(context) {
+    const res = await fetch('http://127.0.0.1:8000/api/v1/home?tt=7Cm8Yiyz1OG2QEsRoWO3MU1SN4Be8wQdSEEElsJKft3b7vtP0jlAYjzBo0Kcs8W5Ux84GnnpwXGZcC2RgwYbOyh0CmXedmuyGCBD');
+    const home = await res.json();
+
+    return {
+        props: {home}
+    }
+}
+
 
 export default Footer;
