@@ -13,7 +13,7 @@ function Footer(props) {
                     </div>
                 </div>
             </div>
-            <div className={`container`} id={`main-header`}>
+            <div className={`container`} id={`main-header `}>
                 <div className={`row`}>
                     <div className={`col-md-9 menu`}>
                         <ul>
