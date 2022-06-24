@@ -22,7 +22,20 @@ function FourOhFour() {
             <Header/>
 
             <main className={`main`}>
+                <div className={`container bg-white border-radius-theme-2 shadow py-5 mb-3`}>
+                    <div className={`row`}>
+                        <div className={`col-md-6 m-auto`}>
 
+
+                            <img src="/images/page-not-found.gif"
+                                 className={`d-block m-auto w-75 `}
+                                  alt="صفحه مورد نظر یافت نشد"/>
+                            <h1 className={`d-block text-center font-30 py-2`}>
+                                صفحه مورد نظر یافت نشد!
+                            </h1>
+                        </div>
+                    </div>
+                </div>
             </main>
 
             <Footer/>

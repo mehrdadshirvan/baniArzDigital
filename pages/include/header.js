@@ -44,7 +44,7 @@ function Footer(props) {
                     <div className={`col-md-3 logo d-grid align-content-center`}>
                         <Link href={'/'}>
                             <a className={'d-block text-left'}>
-                                <img src="./images/logo-light.png"
+                                <img src="/images/logo-light.png"
                                      alt="بانی ارز دیجیتال"/>
                             </a>
                         </Link>
