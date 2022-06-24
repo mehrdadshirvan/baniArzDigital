@@ -51,8 +51,7 @@ function Home(props) {
                 </div>
 
 
-                <PostSwiperSlider posts={home.lastPosts}
-                                  title="Most view"/>
+                <PostSwiperSlider posts={home.lastPosts} title="پیشنهاد سردبیر"/>
 
 
             </main>
