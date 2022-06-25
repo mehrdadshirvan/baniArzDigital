@@ -6,6 +6,8 @@ import HeadInclude from "./include/headInclude";
 import Link from "next/link";
 import HomeSlider from './component/home/slider/homeSlider'
 import PostSwiperSlider from "./component/home/swiper/postSwiperSlider";
+import FooterAboutUs from "./include/footerAboutUs";
+import SuggestionMostView from "./component/home/suggestionMostView/suggestionMostView";
 
 function Home(props) {
     const {home} = props;
@@ -53,7 +55,34 @@ function Home(props) {
 
                 <PostSwiperSlider posts={home.lastPosts} title="پیشنهاد سردبیر"/>
 
+                <div className={`container`}>
+                    <div className={`row`}>
+                        <div className={`col-lg-9`}>
+                            <SuggestionMostView posts={home.suggestionMostView} />
+                        </div>
+                        <div className={`col-lg-3`}>
 
+                            <a href={`#`} rel="nofollow" className={`text-decoration-none d-block mb-3`}>
+                                <img src="/adv/adv-3.gif"
+                                     className={`d-block w-100 border-radius-theme-2 `}
+                                     alt="adv"/>
+                            </a>
+                            <a href={`#`} rel="nofollow" className={`text-decoration-none d-block mb-3`}>
+                                <img src="/adv/img-4.png"
+                                     className={`d-block w-100 border-radius-theme-2 `}
+                                     alt="adv"/>
+                            </a>
+                            <a href={`#`} rel="nofollow" className={`text-decoration-none d-block mb-3`}>
+                                <img src="/adv/img-2.png"
+                                     className={`d-block w-100 border-radius-theme-2 `}
+                                     alt="adv"/>
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+
+                <FooterAboutUs />
             </main>
 
             <Footer/>

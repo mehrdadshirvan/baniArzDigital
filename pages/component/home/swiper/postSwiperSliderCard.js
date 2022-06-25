@@ -7,7 +7,7 @@ import {TiChevronRight} from "react-icons/ti";
 const PostSwiperSliderCard = ({post}) => {
     return (
 
-        <div className={`card`}>
+        <div className={`card  border-radius-theme-2`}>
             <div>
                 <div className={`p-2`}>
                     <Link href={post.url}>
@@ -16,24 +16,18 @@ const PostSwiperSliderCard = ({post}) => {
                                    alt={post.title}
                                    width="200px"
                                    height="200px"
-                                   className={`w-100 rounded overflow-hidden`}
+                                   className={`w-100 border-radius-theme-2 overflow-hidden`}
                             />
                         </a>
                     </Link>
                 </div>
             </div>
             <div className={`p-2`}>
-                <p style={{minHeight: '51px'}}>
+                <p className={`pb-3`} style={{minHeight: '80px'}}>
                     <Link href={post.url}>
                         <a className={`text-decoration-none text-secondary font-15 text-justify`}
-                           title={post.title}>{post.title}
-                        </a>
-                    </Link>
-                </p>
-                <p className={`mb-0 text-start`}>
-                    <Link href={post.url}>
-                        <a className={`text-decoration-none text-primary font-11 text-justify`}>
-                            Show more <TiChevronRight />
+                           title={post.title}>
+                            {post.title}
                         </a>
                     </Link>
                 </p>

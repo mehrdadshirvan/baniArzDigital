@@ -5,6 +5,7 @@ import Header from "./include/header";
 import HomeSlider from "./component/home/slider/homeSlider";
 import PostSwiperSlider from "./component/home/swiper/postSwiperSlider";
 import Footer from "./include/footer";
+import FooterAboutUs from "./include/footerAboutUs";
 
 
 function FourOhFour() {
@@ -26,16 +27,21 @@ function FourOhFour() {
                     <div className={`row`}>
                         <div className={`col-md-6 m-auto`}>
 
-
+                            <p className={`d-block text-center font-80 text-main m-0`} dir="ltr">
+                                404!
+                            </p>
+                            <h1 className={`d-block text-center font-30 pb-2`}>
+                                صفحه مورد نظر یافت نشد!
+                            </h1>
                             <img src="/images/page-not-found.gif"
                                  className={`d-block m-auto w-75 `}
                                   alt="صفحه مورد نظر یافت نشد"/>
-                            <h1 className={`d-block text-center font-30 py-2`}>
-                                صفحه مورد نظر یافت نشد!
-                            </h1>
+
                         </div>
                     </div>
                 </div>
+
+                        <FooterAboutUs />
             </main>
 
             <Footer/>
