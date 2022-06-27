@@ -7,9 +7,9 @@ function SuggestionMostViewCard({post}) {
     const categories = post.categories;
     return (
         <>
-            <li className="section-box px-2 py-3 shadow-sm border-radius-theme list-post">
+            <li className="section-box px-2 py-3 shadow-sm border-radius-theme-2 list-post w-100 ">
                 <div className="image">
-                    <Link href={post.title}>
+                    <Link href={post.url}>
                         <a>
                             <img src={`${post.avatar_url}?width=150&height=150`}
                                  width="150px"
@@ -21,7 +21,7 @@ function SuggestionMostViewCard({post}) {
                 </div>
                 <div className="content px-2 d-grid align-content-between">
                     <div>
-                        <Link href={post.title}>
+                        <Link href={post.url}>
                             <a>
                                 <h5 className="font-18">
                                     {post.title}
@@ -42,6 +42,8 @@ function SuggestionMostViewCard({post}) {
                                    className="d-inline-block">
                                     <img src="/images/Three.jpg"
                                          className={`img-thumbnail`}
+                                         width="32px"
+                                         height="32px"
                                          alt=""/>
                                 </a>
                                 {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}

@@ -13,9 +13,8 @@ function SuggestionMostView({posts, title = ""}) {
                         {title}
                     </h3>
                 </div>
-                <ul className="widget-latest-posts">
+                <ul className="widget-latest-posts p-0">
                     {posts.map((post) => <SuggestionMostViewCard post={post}/>)}
-
                 </ul>
 
             </div>
