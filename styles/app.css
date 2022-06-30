@@ -40,7 +40,9 @@ body, .tooltip, .h1, .h2, .h3, .h4, .h5, .h6, h1, .h1, h2, .h2, h3, .h3, h4, .h4
     text-align: justify;
     word-wrap: break-word;
 }
-
+.text-decoration-none{
+    text-decoration: none !important;
+}
 .rtl {
     direction: rtl !important;
 }
@@ -163,18 +165,6 @@ a:hover{
 
 
 
-
-.text-justify{
-    text-align: justify;
-    word-wrap: break-word;
-}
-.rtl {
-    direction: rtl !important;
-}
-
-.ltr {
-    direction: ltr !important;
-}
 .tgju-copyright-fix,.tgju-copyright{
     display: none !important;
 }

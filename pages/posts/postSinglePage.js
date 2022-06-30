@@ -2,6 +2,9 @@ import Head from "next/head";
 import Header from "../include/header";
 import Footer from "../include/footer";
 import SideBarPostList from "../component/post/sideBarPostList";
+import Link from "next/link";
+import Breadcrumb from 'react-bootstrap/Breadcrumb';
+import {BsFillHouseDoorFill} from "react-icons/bs";
 
 function PostSinglePage({post, suggestionMostView = []}) {
     return (
@@ -16,14 +19,37 @@ function PostSinglePage({post, suggestionMostView = []}) {
             <div className={`container my-3`}>
                 <div className={`row`}>
                     <div className={`col-xl-9 col-lg-9 col-md-12 col-sm-12 col-xs-12`}>
+                        <div className={`row`}>
+                            <Breadcrumb>
+                                <Link href="/">
+                                    <Breadcrumb.Item className="text-decoration-none text-secondary">
+
+                                        <BsFillHouseDoorFill className={`me-1`}/>
+                                        خانه
+
+                                    </Breadcrumb.Item>
+                                </Link>
+                                <Link href="/posts">
+                                <Breadcrumb.Item>
+
+                                        مقالات
+
+                                </Breadcrumb.Item></Link>
+                                <Breadcrumb.Item active>
+                                    <span>{post.title}</span>
+                                </Breadcrumb.Item>
+                            </Breadcrumb>
+
+
+                        </div>
                         <div className={`row mb-4`}>
                             <article className={`card px-0 border-radius-theme-2 overflow-hidden`}
                                      id={`post-${post.id}`}>
                                 <div className={`card-header bg-white text-start`}>
-                                    <h1 className={`font-18 m-0 py-2`}> {post.title}</h1>
+                                    <h1 className={`font-23 m-0 py-3 px-3 d-block text-center`}> {post.title}</h1>
                                 </div>
                                 <img src={post.avatar_url}
-                                     alt=""/>
+                                     alt={post.title}/>
                                 <div className={`card-body line-height p-4`}
                                      dangerouslySetInnerHTML={{__html: post.content}}/>
                                 <div className={`card-footer`}>
@@ -65,12 +91,12 @@ function PostSinglePage({post, suggestionMostView = []}) {
                                 <h5>قیمت لحظه ایی ارزهای دیجیتال</h5>
                             </div>
 
-                            <tgju
-                                type="market-overview"
-                                items="398097,398096,535605,398115,398102"
-                                columns="dot"
-                                token="webservice"
-                            ></tgju>
+                            {/*<tgju*/}
+                            {/*    type="market-overview"*/}
+                            {/*    items="398097,398096,535605,398115,398102"*/}
+                            {/*    columns="dot"*/}
+                            {/*    token="webservice"*/}
+                            {/*/>*/}
                         </div>
                         {
                             suggestionMostView.length > 0
@@ -80,7 +106,8 @@ function PostSinglePage({post, suggestionMostView = []}) {
                                             <h5>پیشنهادات</h5>
                                         </div>
                                         <ul className="border-radius-theme-2 list-unstyled m-0 px-2 py-2 bg-white ">
-                                            {suggestionMostView.map((post) => <SideBarPostList post={post}/>)}
+                                            {/* eslint-disable-next-line react/jsx-key */}
+                                            {suggestionMostView.map((post) => (<SideBarPostList post={post}/>))}
                                         </ul>
                                     </div>
                                 )

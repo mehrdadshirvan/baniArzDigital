@@ -11,7 +11,7 @@ import {BsBookmarks} from "react-icons/bs";
 
 const PostSwiperSlider = ({posts, title = "", slidesPerView = 3}) => {
     return (
-        <section>
+        <section id="home-slider">
             <div className={`container py-4`}>
                 <div className={`mb-4`}>
                     <div className={`row`}>
