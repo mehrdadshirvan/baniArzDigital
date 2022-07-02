@@ -10,10 +10,10 @@ function Footer(props) {
                         col-1
                     </div>
                     <div className={`col-md-4`}>
-                        col2
+                        col-2
                     </div>
                     <div className={`col-md-4`}>
-                        col3
+                        col-3
                     </div>
                 </div>
             </div>
