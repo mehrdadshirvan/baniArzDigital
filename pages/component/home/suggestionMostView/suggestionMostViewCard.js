@@ -7,7 +7,7 @@ function SuggestionMostViewCard({post}) {
     const categories = post.categories;
     return (
         <>
-            <li className="bg-white mb-3 px-2 py-3 shadow-sm border-radius-theme-2 list-post w-100 list-unstyled m-0">
+            <li className="bg-white mb-3 px-2 py-3 shadow-sm border-radius-theme-2 list-post w-100 list-unstyled m-0" key={post.id}>
                 <div className={`row`}>
                     <div className="col-2">
                         <div className="image">

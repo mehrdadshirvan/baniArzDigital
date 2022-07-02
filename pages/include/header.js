@@ -1,5 +1,14 @@
 import Link from "next/link";
-import {BsFillHouseDoorFill} from "react-icons/bs";
+import {
+    BsBarChart,
+    BsBook,
+    BsBookFill,
+    BsCoin,
+    BsFillHouseDoorFill,
+    BsHouseDoor,
+    BsInfoCircle,
+    BsLink45Deg, BsPen
+} from "react-icons/bs";
 // import '../styles/header.globals.module.css'
 
 function Footer(props) {
@@ -21,13 +30,39 @@ function Footer(props) {
                             <li>
                                 <Link href={`/`}>
                                     <a className={`ps-0`}>
+                                        <BsHouseDoor />
                                         خانه
+                                    </a>
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href={`/learn`}>
+                                    <a className={`ps-0`}>
+                                        <BsBook className="me-1"/>
+                                        آموزش
+                                    </a>
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href={`/cryptocurrency`}>
+                                    <a className={`ps-0`}>
+                                        <BsPen className="me-1"/>
+                                        مقالات
+                                    </a>
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href={`/cryptocurrency`}>
+                                    <a className={`ps-0`}>
+                                        <BsBarChart className="me-1"/>
+                                        ارزهای دیجیتال
                                     </a>
                                 </Link>
                             </li>
                             <li>
                                 <Link href={`/about-us`}>
                                     <a className={``}>
+                                        <BsInfoCircle  className="me-1"/>
                                         درباره ما
                                     </a>
                                 </Link>
@@ -35,6 +70,7 @@ function Footer(props) {
                             <li>
                                 <Link href={`/contact-us`}>
                                     <a className={``}>
+                                        <BsLink45Deg  className="me-1"/>
                                         ارتباط ما
                                     </a>
                                 </Link>

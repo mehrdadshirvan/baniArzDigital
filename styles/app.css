@@ -138,9 +138,16 @@ a:hover{
 #main-header div.menu ul li a {
     display: inline-block;
     text-decoration: none;
-    padding: 10px 10px;
-    color: var(--text-color);
-    font-size: 12px;
+    padding: 10px 5px 10px 18px;
+    color: rgb(var(--text-color));
+    font-size: 14px;
+
+}
+
+#main-header div.menu ul li a svg{
+    height: 20px;
+    width: 20px;
+    margin-left: 5px;
 }
 
 #main-header div.menu ul li a:hover {
@@ -196,4 +203,35 @@ a:hover{
 
 .article-author{
     margin-top: -45px !important;
+}
+
+.cryptocurrency-card-item{
+    position: relative;
+    transition: all 0.5s ease;
+    background: #ffffff;
+    border: 3px solid #efefef;
+}
+
+.cryptocurrency-card-item:hover{
+    border: 3px solid rgb(var(--main-color));
+}
+
+.cryptocurrency-card-item img{
+    width: 55px;
+    height: 55px;
+    border-radius: 100%;
+    transition: all 0.5s ease;
+
+}
+
+.cryptocurrency-card-item:hover img{
+    transform: rotateZ(-35deg);
+    box-shadow: 0px 0px 10px 1px #e8e8ee;
+}
+
+.cryptocurrency-card-item h2{
+    transition: all 0.5s ease;
+}
+.cryptocurrency-card-item:hover h2{
+    color: rgb(var(--main-color));
 }

@@ -77,7 +77,7 @@ function Home(props) {
                                     items="398096,398097,535605,398115,398102,757179"
                                     columns="dot,diff"
                                     token="webservice"
-                                />
+                                ></tgju>
                             </div>
                             <div className="col-md-6 mb-2">
                                 <tgju
@@ -85,7 +85,7 @@ function Home(props) {
                                     items="398099,398098,398100,398116,398115,757180"
                                     columns="dot,diff"
                                     token="webservice"
-                                />
+                                ></tgju>
                             </div>
                         </div>
                     </div>
