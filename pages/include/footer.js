@@ -27,6 +27,8 @@ function Footer(props) {
                     </p>
                 </div>
             </div>
+
+            <script src="https://api.accessban.com/v1/widget/v2" defer></script>
         </footer>
     );
 }
