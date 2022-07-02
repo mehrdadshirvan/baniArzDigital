@@ -1,4 +1,5 @@
 import Link from "next/link";
+import {BsFillHouseDoorFill} from "react-icons/bs";
 // import '../styles/header.globals.module.css'
 
 function Footer(props) {
@@ -15,11 +16,11 @@ function Footer(props) {
             </div>
             <div className={`container`} id={`main-header`} dir="RTL">
                 <div className={`row`}>
-                    <div className={`col-md-9 menu`}>
+                    <div className={`col-md-9 menu p-0`}>
                         <ul>
                             <li>
                                 <Link href={`/`}>
-                                    <a className={``}>
+                                    <a className={`ps-0`}>
                                         خانه
                                     </a>
                                 </Link>

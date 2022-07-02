@@ -193,3 +193,7 @@ a:hover{
 .d-grid{
     display: grid;
 }
+
+.article-author{
+    margin-top: -45px !important;
+}
