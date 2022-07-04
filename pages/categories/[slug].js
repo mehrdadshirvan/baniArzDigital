@@ -37,9 +37,9 @@ function CategoryWithSlug(props){
                                 </li>
 
                                 <li className={`breadcrumb-item`}>
-                                    <Link href={'/tags'}>
+                                    <Link href={'/categories'}>
                                         <a className="text-decoration-none text-secondary">
-                                            تگ ها
+                                            دسته‌بندی ها
                                         </a>
                                     </Link>
                                 </li>
