@@ -157,15 +157,29 @@ a:hover{
 #main-header div.menu ul li a i {
 }
 
+
+
 #header #top-bar {
     /*background-image: url('/images/top-bar-bg.jpg');*/
-    background: rgb(var(--grey-color-2));
-    height: 45px;
+    background: rgb(52, 52, 52);
+    padding: 10px 0;
     background-repeat: no-repeat;
     background-attachment: fixed;
     width: 100%;
 }
 
+.searchHeaderForm{}
+.searchHeaderForm form{
+    position: relative;
+}
+.searchHeaderForm form input{}
+.searchHeaderForm form button{
+    background: none;
+    border: none;
+    position: absolute;
+    top: 15%;
+    left: 2%;
+}
 #footer {
     background: rgb(var(--grey-color-3));
 }

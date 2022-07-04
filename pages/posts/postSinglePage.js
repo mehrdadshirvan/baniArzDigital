@@ -139,11 +139,17 @@ function PostSinglePage({post, suggestionMostView = []}) {
                                             </div>
                                         </div>
                                         <div className="col-md-6">
-                                            <div>
-                                                لینک مطلب:
-                                                <a href={`/posts/${post.id}`}>
-                                                    /posts/${post.id}
-                                                </a>
+                                            <p>
+                                                <BsTags className={`me-1`}/>
+                                                دسته‌بندی ها
+                                            </p>
+                                            <div className={`row ps-4 pe-2`}>
+                                                {
+                                                    post.categories.length > 0
+                                                        // eslint-disable-next-line react/jsx-key
+                                                        ? post.categories.map((tag) => (<PostTagItem item={tag}/>))
+                                                        : <></>
+                                                }
                                             </div>
                                         </div>
                                     </div>
@@ -267,12 +273,12 @@ function PostSinglePage({post, suggestionMostView = []}) {
                                 <h5>قیمت لحظه ایی ارزهای دیجیتال</h5>
                             </div>
 
-                            {/*<tgju*/}
-                            {/*    type="market-overview"*/}
-                            {/*    items="398097,398096,535605,398115,398102"*/}
-                            {/*    columns="dot"*/}
-                            {/*    token="webservice"*/}
-                            {/*/>*/}
+                            <tgju
+                                type="market-overview"
+                                items="398097,398096,535605,398115,398102"
+                                columns="dot"
+                                token="webservice"
+                            />
                         </div>
 
                         {
