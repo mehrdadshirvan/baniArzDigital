@@ -173,7 +173,7 @@ function ContactUs(props) {
                                                   onChange={SetData}
                                                   required={true}
                                                   value={form.mobile}
-                                                  rows="6"/>
+                                                  rows="9"/>
                                     </div>
                                 </div>
                                 <div className="row my-4">
