@@ -11,13 +11,15 @@ import Input from "../component/forms/input";
 import Textarea from "../component/forms/textarea";
 import PostCommentCard from "../component/post/comment/postCommentCard";
 import SideBarPostList from "../component/post/sideBarPostList";
+import SuggestionMostView from "../component/home/suggestionMostView/suggestionMostView";
 
 function CategoryWithSlug(props){
+    const {posts,suggestionMostView,category} = props;
     return (
         <div id={`app`}
              dir={'rtl'}>
             <Head>
-                <title>CategoryWithSlug</title>
+                <title>{category.name} | بانی ارز دیجیتال</title>
                 <meta name="description"
                       content="tags"/>
             </Head>
@@ -46,13 +48,13 @@ function CategoryWithSlug(props){
 
                                 <li className={`breadcrumb-item active`}>
                                     <span className="text-decoration-none text-secondary">
-                                        category.name
+                                        {category.name}
                                     </span>
                                 </li>
                             </Breadcrumb>
                         </div>
 
-
+                        <SuggestionMostView posts={suggestionMostView} />
                     </div>
                     <div className={`col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12`}>
 
@@ -68,21 +70,21 @@ function CategoryWithSlug(props){
                         </a>
                         
 
-                        {/*{*/}
-                        {/*    suggestionMostView.length > 0*/}
-                        {/*        ? (*/}
-                        {/*            <div className="widget mb-4">*/}
-                        {/*                <div className="section-title">*/}
-                        {/*                    <h5>پیشنهادات</h5>*/}
-                        {/*                </div>*/}
-                        {/*                <ul className="border-radius-theme-2 list-unstyled m-0 px-2 py-2 bg-white ">*/}
-                        {/*                    /!* eslint-disable-next-line react/jsx-key *!/*/}
-                        {/*                    {suggestionMostView.map((post) => (<SideBarPostList post={post}/>))}*/}
-                        {/*                </ul>*/}
-                        {/*            </div>*/}
-                        {/*        )*/}
-                        {/*        : null*/}
-                        {/*}*/}
+                        {
+                            suggestionMostView.length > 0
+                                ? (
+                                    <div className="widget mb-4">
+                                        <div className="section-title">
+                                            <h5>پیشنهادات</h5>
+                                        </div>
+                                        <ul className="border-radius-theme-2 list-unstyled m-0 px-2 py-2 bg-white ">
+                                            {/* eslint-disable-next-line react/jsx-key */}
+                                            {suggestionMostView.map((post) => (<SideBarPostList post={post}/>))}
+                                        </ul>
+                                    </div>
+                                )
+                                : null
+                        }
 
                     </div>
                 </div>
@@ -93,22 +95,21 @@ function CategoryWithSlug(props){
 }
 
 
-// export async function getServerSideProps(context) {
+export async function getServerSideProps(context) {
 
     // const postID = context.query.id;
-    // const postSlug = context.query.slug;
-    // //current post
-    // const tt = "7Cm8Yiyz1OG2QEsRoWO3MU1SN4Be8wQdSEEElsJKft3b7vtP0jlAYjzBo0Kcs8W5Ux84GnnpwXGZcC2RgwYbOyh0CmXedmuyGCBD";
-    // const url = 'http://127.0.0.1:8000/api/v1/posts/'+postID+'/'+postSlug+'?tt='+tt;
-    // const res = await fetch(url);
-    // let result = await res.json();
-    // let post = result.data.post;
-    // let suggestionMostView = result.data.suggestionMostView;
-    // // console.log(suggestionMostView)
-    // return {
-    //     props: {post,suggestionMostView}, // will be passed to the page component as props
-    // }
-// }
+    const slug = context.query.slug;
+    const tt = "7Cm8Yiyz1OG2QEsRoWO3MU1SN4Be8wQdSEEElsJKft3b7vtP0jlAYjzBo0Kcs8W5Ux84GnnpwXGZcC2RgwYbOyh0CmXedmuyGCBD";
+    const url = 'http://127.0.0.1:8000/api/v1/categories/'+slug+'?tt='+tt;
+    const res = await fetch(url);
+    let result = await res.json();
+    let posts = result.data.post;
+    let suggestionMostView = result.data.suggestionMostView;
+    let category = result.data.category;
+    return {
+        props: {posts,suggestionMostView,category}, // will be passed to the page component as props
+    }
+}
 
 
 export default CategoryWithSlug;

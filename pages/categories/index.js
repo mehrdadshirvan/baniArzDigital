@@ -4,12 +4,14 @@ import Header from "../include/header";
 import HomeSlider from "../component/home/slider/homeSlider";
 import Link from "next/link";
 import PostSwiperSlider from "../component/home/swiper/postSwiperSlider";
-import {BsBookmarks} from "react-icons/bs";
+import {BsBookmarks, BsSignpost2Fill} from "react-icons/bs";
 import SuggestionMostView from "../component/home/suggestionMostView/suggestionMostView";
 import FooterAboutUs from "../include/footerAboutUs";
 import Footer from "../include/footer";
+import Breadcrumb from "react-bootstrap/Breadcrumb";
 
-function Categories (props){
+function Categories(props) {
+    const {category} = props;
     return (
         <div className={`app`}
              dir={`rtl`}>
@@ -25,13 +27,87 @@ function Categories (props){
 
             <main className={`main`}>
 
+                <div className="container mt-4">
+                    <div className={`row`}>
+                        <Breadcrumb>
+                            <li className={`breadcrumb-item`}>
+                                <Link href={'/'}>
+                                    <a className="text-decoration-none text-secondary">
+                                        <BsSignpost2Fill className={`me-1`}/>
+                                        خانه
+                                    </a>
+                                </Link>
+                            </li>
+                            <li className={`breadcrumb-item active`}>
+                                    <span className="text-decoration-none text-secondary">
+                                        دسته‌بندی ها
+                                    </span>
+                            </li>
+                        </Breadcrumb>
 
-                <FooterAboutUs />
+
+                    </div>
+                </div>
+
+
+                <section className="container">
+                    <div className="row">
+                        {
+                            category.map((item) => (
+                                // eslint-disable-next-line react/jsx-key
+                                <div className="col-lg-3 col-md-4 col-sm-6 col-6 mb-2 mx-auto">
+                                    <div className="p-1">
+                                        <div className="cryptocurrency-card-item border-radius-theme-2 overflow-hidden ">
+                                            <div className="px-2 py-4">
+                                                <div className="">
+
+                                                    <Link href={item.url}>
+                                                        <a className="text-decoration-none text-secondary">
+                                                            <img src={item.avatar_url}
+                                                                 className="d-block mx-auto mb-2"
+                                                                 alt="bitcoin info and online price chart"/>
+                                                        </a>
+                                                    </Link>
+                                                    <Link href={item.url}>
+                                                        <a className="text-decoration-none text-secondary">
+                                                            <h2 className="d-block text-center m-0">
+                                                                {item.name}
+                                                            </h2>
+                                                        </a>
+                                                    </Link>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))
+                        }
+                    </div>
+                </section>
+
+
+                <FooterAboutUs/>
             </main>
 
             <Footer/>
         </div>
     );
 }
+
+
+export async function getServerSideProps(context) {
+
+    // const postID = context.query.id;
+    const tt = "7Cm8Yiyz1OG2QEsRoWO3MU1SN4Be8wQdSEEElsJKft3b7vtP0jlAYjzBo0Kcs8W5Ux84GnnpwXGZcC2RgwYbOyh0CmXedmuyGCBD";
+    const url = 'http://127.0.0.1:8000/api/v1/categories/?tt=' + tt;
+    const res = await fetch(url);
+    let result = await res.json();
+    let category = result.data;
+    console.log(category)
+    return {
+        props: {category}, // will be passed to the page component as props
+    }
+}
+
 
 export default Categories;
