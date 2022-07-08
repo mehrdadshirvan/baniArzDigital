@@ -11,13 +11,17 @@ import Input from "../component/forms/input";
 import Textarea from "../component/forms/textarea";
 import PostCommentCard from "../component/post/comment/postCommentCard";
 import SideBarPostList from "../component/post/sideBarPostList";
+import SuggestionMostView from "../component/home/suggestionMostView/suggestionMostView";
+import ListIsEmpty from "../component/listIsEmpty";
+import SuggestionPosts from "../component/suggestionPosts/suggestionPosts";
 
-function TagWithSlug(props){
+function TagWithSlug(props) {
+    const {posts, suggestionMostView, tag} = props;
     return (
         <div id={`app`}
              dir={'rtl'}>
             <Head>
-                <title>tags</title>
+                <title>{tag.name} | بانی ارز دیجیتال</title>
                 <meta name="description"
                       content="tags"/>
             </Head>
@@ -36,23 +40,19 @@ function TagWithSlug(props){
                                     </Link>
                                 </li>
 
-                                <li className={`breadcrumb-item`}>
-                                    <Link href={'/tags'}>
-                                        <a className="text-decoration-none text-secondary">
-                                            تگ ها
-                                        </a>
-                                    </Link>
-                                </li>
-
                                 <li className={`breadcrumb-item active`}>
                                     <span className="text-decoration-none text-secondary">
-                                        tag.name
+                                        {tag.name}
                                     </span>
                                 </li>
                             </Breadcrumb>
                         </div>
 
-
+                        {
+                            posts.length > 0
+                                ? <SuggestionMostView posts={posts}/>
+                                : <ListIsEmpty/>
+                        }
                     </div>
                     <div className={`col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12`}>
 
@@ -68,22 +68,7 @@ function TagWithSlug(props){
                         </a>
 
 
-                        {/*{*/}
-                        {/*    suggestionMostView.length > 0*/}
-                        {/*        ? (*/}
-                        {/*            <div className="widget mb-4">*/}
-                        {/*                <div className="section-title">*/}
-                        {/*                    <h5>پیشنهادات</h5>*/}
-                        {/*                </div>*/}
-                        {/*                <ul className="border-radius-theme-2 list-unstyled m-0 px-2 py-2 bg-white ">*/}
-                        {/*                    /!* eslint-disable-next-line react/jsx-key *!/*/}
-                        {/*                    {suggestionMostView.map((post) => (<SideBarPostList post={post}/>))}*/}
-                        {/*                </ul>*/}
-                        {/*            </div>*/}
-                        {/*        )*/}
-                        {/*        : null*/}
-                        {/*}*/}
-
+                        <SuggestionPosts posts={suggestionMostView} />
                     </div>
                 </div>
             </div>
@@ -93,22 +78,28 @@ function TagWithSlug(props){
 }
 
 
-// export async function getServerSideProps(context) {
+export async function getServerSideProps(context) {
 
     // const postID = context.query.id;
-    // const postSlug = context.query.slug;
-    // //current post
-    // const tt = "7Cm8Yiyz1OG2QEsRoWO3MU1SN4Be8wQdSEEElsJKft3b7vtP0jlAYjzBo0Kcs8W5Ux84GnnpwXGZcC2RgwYbOyh0CmXedmuyGCBD";
-    // const url = 'http://127.0.0.1:8000/api/v1/posts/'+postID+'/'+postSlug+'?tt='+tt;
-    // const res = await fetch(url);
-    // let result = await res.json();
-    // let post = result.data.post;
-    // let suggestionMostView = result.data.suggestionMostView;
-    // // console.log(suggestionMostView)
-    // return {
-    //     props: {post,suggestionMostView}, // will be passed to the page component as props
-    // }
-// }
-
+    const slug = context.query.slug;
+    const tt = "7Cm8Yiyz1OG2QEsRoWO3MU1SN4Be8wQdSEEElsJKft3b7vtP0jlAYjzBo0Kcs8W5Ux84GnnpwXGZcC2RgwYbOyh0CmXedmuyGCBD";
+    const baseURL = 'https://banibank.com';
+    const url = baseURL+'/api/v1/tags/' + slug + '?tt=' + tt;
+    const res = await fetch(url);
+    let result = await res.json();
+    let posts, suggestionMostView, tag;
+    if (result.status === 'Success') {
+        posts = result.data.post;
+        suggestionMostView = result.data.suggestionMostView;
+        tag = result.data.tag;
+    } else {
+        posts = [];
+        suggestionMostView = [];
+        tag = [];
+    }
+    return {
+        props: {posts, suggestionMostView, tag}, // will be passed to the page component as props
+    }
+}
 
 export default TagWithSlug;
