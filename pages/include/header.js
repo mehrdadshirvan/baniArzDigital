@@ -14,8 +14,9 @@ import {useState} from "react";
 
 // import '../styles/header.globals.module.css'
 
-function Header({props,searchKeyword = ""}) {
+function Header(props,{searchKeyword = ""}) {
 
+    const {mainMenu} = props;
     const [searchForm, setSearchForm] = useState({
         'keyword': searchKeyword,
     });
@@ -108,7 +109,7 @@ function Header({props,searchKeyword = ""}) {
                                 </Link>
                             </li>
                             <li>
-                                <Link href={`/cryptocurrency`}>
+                                <Link href={`/posts`}>
                                     <a className={`ps-0`}>
                                         <BsPen className="me-1"/>
                                         مقالات
@@ -153,10 +154,16 @@ function Header({props,searchKeyword = ""}) {
 
 
 export async function getServerSideProps(context) {
-    const res = await fetch('http://127.0.0.1:8000/api/v1/home?tt=7Cm8Yiyz1OG2QEsRoWO3MU1SN4Be8wQdSEEElsJKft3b7vtP0jlAYjzBo0Kcs8W5Ux84GnnpwXGZcC2RgwYbOyh0CmXedmuyGCBD');
-    const home = await res.json();
+
+    const tt = "7Cm8Yiyz1OG2QEsRoWO3MU1SN4Be8wQdSEEElsJKft3b7vtP0jlAYjzBo0Kcs8W5Ux84GnnpwXGZcC2RgwYbOyh0CmXedmuyGCBD";
+    const baseURL = 'https://banibank.com';
+    const url = baseURL+'/api/v1/menu/?tt=' + tt;
+    const res = await fetch(url);
+    const result = await res.json();
+    console.log(33)
+    console.log(result)
     return {
-        props: {home,keyword}
+        props: {mainMenu}
     }
 }
 
