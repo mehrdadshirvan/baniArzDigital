@@ -77,7 +77,8 @@ function Cryptocurrency(props) {
                     <div className="row">
                         {
                             arr.map((item) => (
-                                <div className="col-lg-3 col-md-4 col-sm-6 col-6 mb-2 mx-auto">
+                                // eslint-disable-next-line react/jsx-key
+                                <div className="col-lg-3 col-md-4 col-sm-6 col-6 mb-2 mx-auto" id={item.name}>
                                     <div className="p-1">
                                         <div className="cryptocurrency-card-item border-radius-theme-2 overflow-hidden ">
                                             <div className="px-2 py-4">

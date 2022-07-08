@@ -11,6 +11,7 @@ function HomeSlider({posts}) {
                         <Carousel>
                             {
                                 posts.map(post => (
+                                    // eslint-disable-next-line react/jsx-key
                                     <Carousel.Item>
 
                                         <img
