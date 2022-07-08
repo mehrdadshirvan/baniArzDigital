@@ -12,6 +12,8 @@ import Textarea from "../component/forms/textarea";
 import PostCommentCard from "../component/post/comment/postCommentCard";
 import SideBarPostList from "../component/post/sideBarPostList";
 import SuggestionMostView from "../component/home/suggestionMostView/suggestionMostView";
+import ListIsEmpty from "../component/listIsEmpty";
+import SuggestionPosts from "../component/suggestionPosts/suggestionPosts";
 
 function CategoryWithSlug(props){
     const {posts,suggestionMostView,category} = props;
@@ -54,7 +56,11 @@ function CategoryWithSlug(props){
                             </Breadcrumb>
                         </div>
 
-                        <SuggestionMostView posts={suggestionMostView} />
+                        {
+                            posts.length > 0
+                                ? <SuggestionMostView posts={posts}/>
+                                : <ListIsEmpty />
+                        }
                     </div>
                     <div className={`col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12`}>
 
@@ -68,23 +74,9 @@ function CategoryWithSlug(props){
                             <img src="/adv/adv-21.jpg"
                                  className="w-100 rounded"/>
                         </a>
-                        
 
-                        {
-                            suggestionMostView.length > 0
-                                ? (
-                                    <div className="widget mb-4">
-                                        <div className="section-title">
-                                            <h5>پیشنهادات</h5>
-                                        </div>
-                                        <ul className="border-radius-theme-2 list-unstyled m-0 px-2 py-2 bg-white ">
-                                            {/* eslint-disable-next-line react/jsx-key */}
-                                            {suggestionMostView.map((post) => (<SideBarPostList post={post}/>))}
-                                        </ul>
-                                    </div>
-                                )
-                                : null
-                        }
+
+                        <SuggestionPosts posts={suggestionMostView} />
 
                     </div>
                 </div>
@@ -100,12 +92,20 @@ export async function getServerSideProps(context) {
     // const postID = context.query.id;
     const slug = context.query.slug;
     const tt = "7Cm8Yiyz1OG2QEsRoWO3MU1SN4Be8wQdSEEElsJKft3b7vtP0jlAYjzBo0Kcs8W5Ux84GnnpwXGZcC2RgwYbOyh0CmXedmuyGCBD";
-    const url = 'http://127.0.0.1:8000/api/v1/categories/'+slug+'?tt='+tt;
+    const baseURL = 'https://banibank.com';
+    const url = baseURL+'/api/v1/categories/'+slug+'?tt='+tt;
     const res = await fetch(url);
     let result = await res.json();
-    let posts = result.data.post;
-    let suggestionMostView = result.data.suggestionMostView;
-    let category = result.data.category;
+    let posts, suggestionMostView, category;
+    if(result.status === 'Success'){
+        posts = result.data.post;
+        suggestionMostView = result.data.suggestionMostView;
+        category = result.data.category;
+    }else{
+        posts = [];
+        suggestionMostView = [];
+        category = [];
+    }
     return {
         props: {posts,suggestionMostView,category}, // will be passed to the page component as props
     }
