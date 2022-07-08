@@ -249,3 +249,24 @@ a:hover{
 .cryptocurrency-card-item:hover h2{
     color: rgb(var(--main-color));
 }
+
+.scroll-top{
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    height: 50px;
+    width: 50px;
+    border-radius: 100%;
+    background: #31313150;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    color: #ffffff;
+    transition: all 0.5s ease;
+}
+.scroll-top:hover{
+    background: rgb(var(--main-color));
+    color: #000 !important;
+    font-size: 28px;
+}
