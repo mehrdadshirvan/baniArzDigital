@@ -7,7 +7,8 @@ function SuggestionMostViewCard({post}) {
     const categories = post.categories;
     return (
         <>
-            <li className="bg-white mb-3 px-2 py-3 shadow-sm border-radius-theme-2 list-post w-100 list-unstyled m-0" key={post.id}>
+            <li className="bg-white mb-3 px-2 py-3 shadow-sm border-radius-theme-2 list-post w-100 list-unstyled m-0"
+                key={post.id}>
                 <div className={`row`}>
                     <div className="col-2">
                         <div className="image">
@@ -41,22 +42,31 @@ function SuggestionMostViewCard({post}) {
                             <div>
                                 <div className="post-card-info">
                                     <div className="list-inline">
-                                        {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-                                        <Link href={post.user.url}>
-                                            <a className="d-inline-block">
-                                                <img src={`${post.user.avatar_url}?width=130&height=130`}
-                                                     className={`img-thumbnail rounded-circle me-1`}
-                                                     width="32px"
-                                                     height="32px"
-                                                     alt=""/>
-                                            </a>
-                                        </Link>
-                                        {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-                                        <Link href={post.user.url}>
-                                            <a className="text-secondary d-inline-block font-12 me-1">
-                                                {post.user.name}
-                                            </a>
-                                        </Link>
+                                        {
+                                            post.user !== null &&  post.user.length > 0
+                                                ? (
+                                                    <>
+                                                        {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+                                                        <Link href={post.user.url}>
+                                                            <a className="d-inline-block">
+                                                                <img src={`${post.user.avatar_url}?width=130&height=130`}
+                                                                     className={`img-thumbnail rounded-circle me-1`}
+                                                                     width="32px"
+                                                                     height="32px"
+                                                                     alt=""/>
+                                                            </a>
+                                                        </Link>
+                                                        {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+                                                        <Link href={post.user.url}>
+                                                            <a className="text-secondary d-inline-block font-12 me-1">
+                                                                {post.user.name}
+                                                            </a>
+                                                        </Link>
+                                                    </>
+                                                )
+                                                : <></>
+                                        }
+
                                         {
                                             categories != null && categories.length > 0
                                                 ? (

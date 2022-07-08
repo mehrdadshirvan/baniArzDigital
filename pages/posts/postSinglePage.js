@@ -4,7 +4,7 @@ import Footer from "../include/footer";
 import SideBarPostList from "../component/post/sideBarPostList";
 import Link from "next/link";
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
-import {BsChatLeftText, BsClock, BsFillHouseDoorFill, BsSignpost2Fill, BsTags} from "react-icons/bs";
+import {BsChatLeftText, BsClock, BsFillHouseDoorFill, BsGrid1X2, BsSignpost2Fill, BsTags} from "react-icons/bs";
 import PostTagItem from "../component/post/postTagItem";
 import {useRouter} from 'next/router';
 import PostSwiperSlider from "../component/post/swiper/postSwiperSlider";
@@ -13,6 +13,7 @@ import Input from "../component/forms/input";
 import Textarea from "../component/forms/textarea";
 import {Alert} from "react-bootstrap";
 import PostCommentCard from "../component/post/comment/postCommentCard";
+import SuggestionPosts from "../component/suggestionPosts/suggestionPosts";
 
 function PostSinglePage({post, suggestionMostView = []}) {
     const {asPath, query} = useRouter();
@@ -124,6 +125,21 @@ function PostSinglePage({post, suggestionMostView = []}) {
                                      dangerouslySetInnerHTML={{__html: post.content}}/>
                                 <div className={`card-body`}>
                                     <div className={`row`}>
+
+                                        <div className="col-md-6">
+                                            <p>
+                                                <BsGrid1X2 className={`me-1`}/>
+                                                دسته‌بندی ها
+                                            </p>
+                                            <div className={`row ps-4 pe-2`}>
+                                                {
+                                                    post.categories.length > 0
+                                                        // eslint-disable-next-line react/jsx-key
+                                                        ? post.categories.map((tag) => (<PostTagItem item={tag}/>))
+                                                        : <></>
+                                                }
+                                            </div>
+                                        </div>
                                         <div className={`col-md-6 border-end border-light `}>
                                             <p>
                                                 <BsTags className={`me-1`}/>
@@ -134,20 +150,6 @@ function PostSinglePage({post, suggestionMostView = []}) {
                                                     post.tags.length > 0
                                                         // eslint-disable-next-line react/jsx-key
                                                         ? post.tags.map((tag) => (<PostTagItem item={tag}/>))
-                                                        : <></>
-                                                }
-                                            </div>
-                                        </div>
-                                        <div className="col-md-6">
-                                            <p>
-                                                <BsTags className={`me-1`}/>
-                                                دسته‌بندی ها
-                                            </p>
-                                            <div className={`row ps-4 pe-2`}>
-                                                {
-                                                    post.categories.length > 0
-                                                        // eslint-disable-next-line react/jsx-key
-                                                        ? post.categories.map((tag) => (<PostTagItem item={tag}/>))
                                                         : <></>
                                                 }
                                             </div>
@@ -281,22 +283,7 @@ function PostSinglePage({post, suggestionMostView = []}) {
                             />
                         </div>
 
-                        {
-                            suggestionMostView.length > 0
-                                ? (
-                                    <div className="widget mb-4">
-                                        <div className="section-title">
-                                            <h5>پیشنهادات</h5>
-                                        </div>
-                                        <ul className="border-radius-theme-2 list-unstyled m-0 px-2 py-2 bg-white ">
-                                            {/* eslint-disable-next-line react/jsx-key */}
-                                            {suggestionMostView.map((post) => (<SideBarPostList post={post}/>))}
-                                        </ul>
-                                    </div>
-                                )
-                                : null
-                        }
-
+                        <SuggestionPosts posts={suggestionMostView} />
                     </div>
                 </div>
             </div>
