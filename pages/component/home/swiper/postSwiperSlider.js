@@ -49,7 +49,7 @@ const PostSwiperSlider = ({posts, title = "", slidesPerView = 3}) => {
                             pagination={{clickable: true}}
                     >
                         {/* eslint-disable-next-line react/jsx-key */}
-                        {posts.map((post) => <SwiperSlide><PostSwiperSliderCard post={post}/></SwiperSlide>)}
+                        {posts?.map((post) => <SwiperSlide><PostSwiperSliderCard post={post}/></SwiperSlide>)}
                     </Swiper>
 
                 </div>

@@ -1,6 +1,3 @@
-import {BsBookmarks} from "react-icons/bs";
-import {SwiperSlide} from "swiper/react";
-import PostSwiperSliderCard from "../swiper/postSwiperSliderCard";
 import Link from "next/link";
 
 function SuggestionMostViewCard({post}) {
@@ -71,7 +68,7 @@ function SuggestionMostViewCard({post}) {
                                             categories != null && categories.length > 0
                                                 ? (
                                                     <>
-                                                        <span className="dot d-inline-block"></span>
+                                                        <span className="dot d-inline-block"/>
                                                         {
                                                             categories.map((category) =>
                                                                 // eslint-disable-next-line react/jsx-key
@@ -89,8 +86,8 @@ function SuggestionMostViewCard({post}) {
                                                 : (<></>)
                                         }
 
-                                        <span className="dot d-inline-block"></span>
-                                        <span className="font-12">{post.release_at_2}</span>
+                                        <span className="dot d-inline-block"/>
+                                        <span className="font-12">{post?.release_at_2}</span>
                                     </div>
 
                                 </div>

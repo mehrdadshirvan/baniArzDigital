@@ -33,9 +33,13 @@ function FourOhFour() {
                             <h1 className={`d-block text-center font-30 pb-2`}>
                                 صفحه مورد نظر یافت نشد!
                             </h1>
-                            <img src="/images/page-not-found.gif"
-                                 className={`d-block m-auto w-75 `}
-                                  alt="صفحه مورد نظر یافت نشد"/>
+                            <picture>
+                                <source srcSet={`/images/page-not-found.gif`} type={`image/gif`}/>
+                                <img src="/images/page-not-found.gif"
+                                     className={`d-block m-auto w-75 `}
+                                     alt="صفحه مورد نظر یافت نشد"/>
+                            </picture>
+
 
                         </div>
                     </div>

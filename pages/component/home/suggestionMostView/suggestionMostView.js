@@ -21,7 +21,7 @@ function SuggestionMostView({posts, title = ""}) {
 
                 <ul className="widget-latest-posts p-0">
                     {/* eslint-disable-next-line react/jsx-key */}
-                    {posts.map((post) => <SuggestionMostViewCard post={post}/>)}
+                    {posts?.map((post) => <SuggestionMostViewCard post={post}/>)}
                 </ul>
 
             </div>

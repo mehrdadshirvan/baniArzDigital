@@ -1,4 +1,5 @@
 // import '../styles/globals.css'
+// import { createRoot } from 'react-dom/client';
 import Router from 'next/router';
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css'; //styles of nprogress

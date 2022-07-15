@@ -5,14 +5,14 @@ function HomeSlider({posts}) {
     return (
         <>
             {
-                posts.length > 0
+                posts?.length > 0
                     ? (
 
                         <Carousel>
                             {
-                                posts.map(post => (
+                                posts?.map(post => (
                                     // eslint-disable-next-line react/jsx-key
-                                    <Carousel.Item>
+                                    <Carousel.Item id={post.id}>
 
                                         <img
                                             className="d-block w-100 border-radius-theme-2 overflow-hidden"
@@ -25,7 +25,6 @@ function HomeSlider({posts}) {
                                                     {post.title ? (<h3>{post.title}</h3>) : null}
                                                 </a>
                                             </Link>
-                                                {post.short_description ? (<p>{post.short_description}</p>) : null}
                                         </Carousel.Caption>
 
                                     </Carousel.Item>

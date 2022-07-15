@@ -32,10 +32,12 @@ function FourOhFour() {
                             <h1 className={`d-block text-center font-30 pb-2`}>
                                 خطای غیر منتظره!
                             </h1>
-                            <img src="/images/page-not-found.gif"
-                                 className={`d-block m-auto w-75 `}
-                                  alt="خطای غیر منتظره"/>
-
+                            <picture>
+                                <source srcSet={`/images/page-not-found.gif`} type={`image/gif`}/>
+                                <img src="/images/page-not-found.gif"
+                                     className={`d-block m-auto w-75 `}
+                                     alt="خطای غیر منتظره"/>
+                            </picture>
                         </div>
                     </div>
                 </div>
