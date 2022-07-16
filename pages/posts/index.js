@@ -84,16 +84,17 @@ export async function getServerSideProps(context) {
     const url = baseURL +'/api/v1/posts/?tt='+tt;
     const res = await fetch(url);
     let result = await res.json();
-    let posts, suggestionMostView;
+    let posts;
+    console.log(result)
     if(result.status === 'Success'){
         posts = result.data.post;
-        suggestionMostView = result.data.suggestionMostView;
+        //suggestionMostView = result.data.suggestionMostView;
     }else{
         posts = [];
-        suggestionMostView = [];
+       // suggestionMostView = [];
     }
     return {
-        props: {posts,suggestionMostView}, // will be passed to the page component as props
+        props: {posts}, // will be passed to the page component as props
     }
 }
 

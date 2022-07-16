@@ -136,13 +136,17 @@ function Home(props) {
     )
 }
 
-export async function getStaticSideProps(context) {
+export async function getServerSideProps(context) {
     const tt = '7Cm8Yiyz1OG2QEsRoWO3MU1SN4Be8wQdSEEElsJKft3b7vtP0jlAYjzBo0Kcs8W5Ux84GnnpwXGZcC2RgwYbOyh0CmXedmuyGCBD';
     const baseURL = 'https://banibank.com';
     const url = baseURL + '/api/v1/home?tt=' + tt;
+
     const res = await fetch(url);
     const result = await res.json();
 
+    console.log(1111)
+    console.log(result)
+    console.log(222)
     const lastPosts = result.lastPosts;
     const suggestedEditor = result.suggestedEditor;
     const suggestionMostView = result.suggestionMostView;
