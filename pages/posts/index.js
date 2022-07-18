@@ -12,14 +12,15 @@ import Breadcrumb from "react-bootstrap/Breadcrumb";
 import ListIsEmpty from "../component/listIsEmpty";
 import SuggestionPosts from "../component/suggestionPosts/suggestionPosts";
 
-function Posts (props){
-    const {posts,suggestionMostView} = props;
+function Posts(props) {
+    const {posts,meta, suggestionMostView} = props;
     return (
         <div id={`app`}
              dir={'rtl'}>
             <Head>
                 <title>مقالات | بانی ارز دیجیتال</title>
-                <meta name="description" content="tags"/>
+                <meta name="description"
+                      content="tags"/>
             </Head>
             <Header/>
             <div className={`container my-3`}>
@@ -46,8 +47,8 @@ function Posts (props){
 
                         {
                             posts.length > 0
-                                ? <SuggestionMostView posts={posts}/>
-                                : <ListIsEmpty />
+                                ? <SuggestionMostView posts={posts} meta={meta}/>
+                                : <ListIsEmpty/>
                         }
                     </div>
                     <div className={`col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12`}>
@@ -64,7 +65,7 @@ function Posts (props){
                         </a>
 
 
-                        <SuggestionPosts posts={suggestionMostView} />
+                        <SuggestionPosts posts={suggestionMostView}/>
 
                     </div>
                 </div>
@@ -79,22 +80,32 @@ export async function getServerSideProps(context) {
 
     // const postID = context.query.id;
     const slug = context.query.slug;
+    const pageNumber = (context.query.page) ? context.query.page : 1;
     const tt = "7Cm8Yiyz1OG2QEsRoWO3MU1SN4Be8wQdSEEElsJKft3b7vtP0jlAYjzBo0Kcs8W5Ux84GnnpwXGZcC2RgwYbOyh0CmXedmuyGCBD";
     const baseURL = 'https://banibank.com';
-    const url = baseURL +'/api/v1/posts/?tt='+tt;
+    const url = baseURL + '/api/v1/posts/?page=' + pageNumber + '&tt=' + tt;
     const res = await fetch(url);
     let result = await res.json();
-    let posts;
-    console.log(result)
-    if(result.status === 'Success'){
-        posts = result.data.post;
-        //suggestionMostView = result.data.suggestionMostView;
-    }else{
+
+
+    const suggestionMostViewUrl = baseURL + '/api/v1/suggestion-posts?tt=' + tt;
+    const suggestionMostViewRes = await fetch(suggestionMostViewUrl);
+    let suggestionMostViewResult = await suggestionMostViewRes.json();
+
+
+    let posts,meta, suggestionMostView;
+
+    if (result.status === 'success') {
+        posts = result.data;
+        meta = result.meta;
+        suggestionMostView = suggestionMostViewResult.suggestionMostView
+    } else {
         posts = [];
-       // suggestionMostView = [];
+        meta = [];
+        suggestionMostView = [];
     }
     return {
-        props: {posts}, // will be passed to the page component as props
+        props: {posts,meta, suggestionMostView}, // will be passed to the page component as props
     }
 }
 

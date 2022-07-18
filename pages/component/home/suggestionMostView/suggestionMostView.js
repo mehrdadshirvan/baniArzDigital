@@ -1,8 +1,9 @@
 import {BsBookmarks} from "react-icons/bs";
 import {SwiperSlide} from "swiper/react";
 import SuggestionMostViewCard from "./suggestionMostViewCard";
+import PaginationList from "../../paginationList";
 
-function SuggestionMostView({posts, title = ""}) {
+function SuggestionMostView({posts,meta = [], title = ""}) {
     return (
         <>
             <div className={`container py-4 mb-4 ps-0`}>
@@ -23,6 +24,8 @@ function SuggestionMostView({posts, title = ""}) {
                     {/* eslint-disable-next-line react/jsx-key */}
                     {posts?.map((post) => <SuggestionMostViewCard post={post}/>)}
                 </ul>
+
+                <PaginationList list={meta}/>
 
             </div>
         </>
