@@ -1,4 +1,6 @@
-function PaginationList({list}) {
+import Link from 'next/link';
+
+function PaginationList({list, url = ''}) {
     console.log(list)
     return (
         <>
@@ -39,8 +41,11 @@ function PaginationList({list}) {
                                             list.links.map((link) => (
                                                 // eslint-disable-next-line react/jsx-key
                                                 <li className={`page-item ${link.active ? 'active' : ''}`} key={link.label}>
-                                                    <a className="page-link"
-                                                       href={link.url}>{link.label}</a>
+                                                    <Link href={url + '?page=' +link.label}>
+                                                        <a className="page-link">
+                                                            {link.label}
+                                                        </a>
+                                                    </Link>
                                                 </li>
                                             ))
                                         }
