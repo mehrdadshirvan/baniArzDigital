@@ -33,7 +33,11 @@ body, .tooltip, .h1, .h2, .h3, .h4, .h5, .h6, h1, .h1, h2, .h2, h3, .h3, h4, .h4
 }
 
 .iransans {
-    font-family: var(--main-font-family) !important;
+    font-family: 'IRANSANS' !important;
+}
+ul.pagination li.page-item a.page-link{
+
+    font-family: 'IRANSANS' !important;
 }
 
 .text-justify {
