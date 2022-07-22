@@ -47,7 +47,7 @@ function Posts(props) {
 
                         {
                             posts.length > 0
-                                ? <SuggestionMostView posts={posts} meta={meta}/>
+                                ? <SuggestionMostView posts={posts} meta={meta} />
                                 : <ListIsEmpty/>
                         }
                     </div>
