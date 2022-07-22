@@ -16,7 +16,7 @@ import ListIsEmpty from "../component/listIsEmpty";
 import SuggestionPosts from "../component/suggestionPosts/suggestionPosts";
 
 function TagWithSlug(props) {
-    const {posts, suggestionMostView, tag} = props;
+    const {posts,meta, suggestionMostView, tag} = props;
     return (
         <div id={`app`}
              dir={'rtl'}>
@@ -50,7 +50,7 @@ function TagWithSlug(props) {
 
                         {
                             posts.length > 0
-                                ? <SuggestionMostView posts={posts}/>
+                                ? <SuggestionMostView posts={posts} meta={meta} />
                                 : <ListIsEmpty/>
                         }
                     </div>
@@ -87,18 +87,29 @@ export async function getServerSideProps(context) {
     const url = baseURL+'/api/v1/tags/' + slug + '?tt=' + tt;
     const res = await fetch(url);
     let result = await res.json();
-    let posts, suggestionMostView, tag;
-    if (result.status === 'Success') {
-        posts = result.data.post;
-        suggestionMostView = result.data.suggestionMostView;
-        tag = result.data.tag;
+
+    const suggestionMostViewUrl = baseURL + '/api/v1/suggestion-posts?tt=' + tt;
+    const suggestionMostViewRes = await fetch(suggestionMostViewUrl);
+    let suggestionMostViewResult = await suggestionMostViewRes.json();
+
+    const tagInfoUrl = baseURL + '/api/v1/tags/' + slug + '?info=1&tt=' + tt;
+    const tagInfoUrlRes = await fetch(tagInfoUrl);
+    let tagInfoUrlResult = await tagInfoUrlRes.json();
+
+    let posts,meta, suggestionMostView, tag;
+    if (result.status === 'success') {
+        posts = result.data;
+        meta = result.meta;
+        suggestionMostView = suggestionMostViewResult.suggestionMostView;
+        tag = tagInfoUrlResult;
     } else {
         posts = [];
+        meta = [];
         suggestionMostView = [];
         tag = [];
     }
     return {
-        props: {posts, suggestionMostView, tag}, // will be passed to the page component as props
+        props: {posts,meta, suggestionMostView, tag}, // will be passed to the page component as props
     }
 }
 
