@@ -4,9 +4,10 @@ import SuggestionMostViewCard from "./suggestionMostViewCard";
 import PaginationList from "../../paginationList";
 
 function SuggestionMostView({posts,meta = [], title = ""}) {
+    console.log(meta)
     return (
         <>
-            <div className={`container py-4 mb-4 ps-0`}>
+            <div className={`container pb-4 mb-4 ps-0`}>
                 {
                     title != ""
                         ? (
@@ -25,7 +26,7 @@ function SuggestionMostView({posts,meta = [], title = ""}) {
                     {posts?.map((post) => <SuggestionMostViewCard post={post}/>)}
                 </ul>
 
-                <PaginationList list={meta}/>
+                { meta ? <PaginationList list={meta}/> : <></>}
 
             </div>
         </>
