@@ -15,8 +15,8 @@ import SuggestionMostView from "../component/home/suggestionMostView/suggestionM
 import ListIsEmpty from "../component/listIsEmpty";
 import SuggestionPosts from "../component/suggestionPosts/suggestionPosts";
 
-function CategoryWithSlug(props){
-    const {posts,suggestionMostView,category} = props;
+function CategoryWithSlug(props) {
+    const {posts,meta, suggestionMostView, category} = props;
     return (
         <div id={`app`}
              dir={'rtl'}>
@@ -58,8 +58,8 @@ function CategoryWithSlug(props){
 
                         {
                             posts.length > 0
-                                ? <SuggestionMostView posts={posts}/>
-                                : <ListIsEmpty />
+                                ? <SuggestionMostView posts={posts} meta={meta}/>
+                                : <ListIsEmpty/>
                         }
                     </div>
                     <div className={`col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12`}>
@@ -76,7 +76,7 @@ function CategoryWithSlug(props){
                         </a>
 
 
-                        <SuggestionPosts posts={suggestionMostView} />
+                        <SuggestionPosts posts={suggestionMostView}/>
 
                     </div>
                 </div>
@@ -93,21 +93,32 @@ export async function getServerSideProps(context) {
     const slug = context.query.slug;
     const tt = "7Cm8Yiyz1OG2QEsRoWO3MU1SN4Be8wQdSEEElsJKft3b7vtP0jlAYjzBo0Kcs8W5Ux84GnnpwXGZcC2RgwYbOyh0CmXedmuyGCBD";
     const baseURL = 'https://banibank.com';
-    const url = baseURL+'/api/v1/categories/'+slug+'?tt='+tt;
+    const url = baseURL + '/api/v1/categories/' + slug + '?tt=' + tt;
     const res = await fetch(url);
     let result = await res.json();
-    let posts, suggestionMostView, category;
-    if(result.status === 'Success'){
-        posts = result.data.post;
-        suggestionMostView = result.data.suggestionMostView;
-        category = result.data.category;
-    }else{
+
+    const suggestionMostViewUrl = baseURL + '/api/v1/suggestion-posts?tt=' + tt;
+    const suggestionMostViewRes = await fetch(suggestionMostViewUrl);
+    let suggestionMostViewResult = await suggestionMostViewRes.json();
+
+    const categoryInfoUrl = baseURL + '/api/v1/categories/' + slug + '?info=1&tt=' + tt;
+    const categoryInfoUrlRes = await fetch(categoryInfoUrl);
+    let categoryInfoUrlResult = await categoryInfoUrlRes.json();
+
+    let posts, meta, suggestionMostView, category;
+    if (result.status === 'success') {
+        posts = result.data;
+        meta = result.meta;
+        suggestionMostView = suggestionMostViewResult.suggestionMostView;
+        category = categoryInfoUrlResult;
+    } else {
         posts = [];
+        meta = [];
         suggestionMostView = [];
         category = [];
     }
     return {
-        props: {posts,suggestionMostView,category}, // will be passed to the page component as props
+        props: {posts,meta, suggestionMostView, category}, // will be passed to the page component as props
     }
 }
 
