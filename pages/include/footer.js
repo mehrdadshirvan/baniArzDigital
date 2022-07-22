@@ -66,7 +66,7 @@ function Footer(props) {
                         </p>
                         <ul className="list-unstyled ps-2 py-2 ">
                             <li>
-                                <Link href="/contact-us">
+                                <Link href="/rules">
                                     <a rel="follow"
                                        className="font-14 text-white text-decoration-none d-block my-2"
                                        title="ارتباط با ما | بانی ارزدیجیتال">
@@ -76,12 +76,12 @@ function Footer(props) {
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/contact-us">
+                                <Link href="/faq">
                                     <a rel="follow"
                                        className="font-14 text-white text-decoration-none d-block my-2"
-                                       title="ارتباط با ما | بانی ارزدیجیتال">
+                                       title="پاسخ به پرسش های متداول | بانی ارزدیجیتال">
                                         <BsLink45Deg className="me-1"/>
-                                        شرایط استفاده از سایت
+                                        پاسخ به پرسش های متداول
                                     </a>
                                 </Link>
                             </li>

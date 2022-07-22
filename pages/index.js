@@ -12,7 +12,6 @@ import {BsBookmarks} from "react-icons/bs";
 
 function Home(props) {
     const {lastPosts,suggestedEditor,suggestionMostView} = props;
-    //console.log(home)
     return (<div className={`app`}
                  dir={`rtl`}>
             <Head>
@@ -96,6 +95,7 @@ function Home(props) {
                         <div className={`row`}>
                             <div className={`col-lg-9`}>
                                 <SuggestionMostView posts={suggestionMostView}
+                                                    meta={[]}
                                                     title="پربازدیدهای این هفته"/>
                             </div>
                             <div className={`col-lg-3`}>
@@ -144,12 +144,11 @@ export async function getServerSideProps(context) {
     const res = await fetch(url);
     const result = await res.json();
 
-    console.log(1111)
-    console.log(result)
-    console.log(222)
     const lastPosts = result.lastPosts;
     const suggestedEditor = result.suggestedEditor;
     const suggestionMostView = result.suggestionMostView;
+
+
     return {
         props: {lastPosts,suggestedEditor,suggestionMostView}
     }

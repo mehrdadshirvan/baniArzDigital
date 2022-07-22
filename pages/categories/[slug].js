@@ -118,7 +118,7 @@ export async function getServerSideProps(context) {
         category = [];
     }
     return {
-        props: {posts,meta, suggestionMostView, category}, // will be passed to the page component as props
+        props: {posts,meta, suggestionMostView, category},
     }
 }
 

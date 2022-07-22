@@ -26,7 +26,7 @@ function SuggestionMostView({posts,meta = [], title = ""}) {
                     {posts?.map((post) => <SuggestionMostViewCard post={post}/>)}
                 </ul>
 
-                { meta ? <PaginationList list={meta}/> : <></>}
+                { meta[0] != null ? <PaginationList list={meta}/> : <></>}
 
             </div>
         </>

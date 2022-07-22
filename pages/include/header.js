@@ -9,14 +9,15 @@ import {
     BsInfoCircle,
     BsLink45Deg, BsPen, BsSearch
 } from "react-icons/bs";
-import {Dropdown} from "react-bootstrap";
 import {useState} from "react";
+
 
 // import '../styles/header.globals.module.css'
 
 function Header(props,{searchKeyword = ""}) {
 
     const {mainMenu} = props;
+
     const [searchForm, setSearchForm] = useState({
         'keyword': searchKeyword,
     });
@@ -152,18 +153,16 @@ function Header(props,{searchKeyword = ""}) {
     );
 }
 
-
 export async function getServerSideProps(context) {
 
-    const tt = "7Cm8Yiyz1OG2QEsRoWO3MU1SN4Be8wQdSEEElsJKft3b7vtP0jlAYjzBo0Kcs8W5Ux84GnnpwXGZcC2RgwYbOyh0CmXedmuyGCBD";
-    const baseURL = 'https://banibank.com';
-    const url = baseURL+'/api/v1/menu/?tt=' + tt;
-    const res = await fetch(url);
-    const result = await res.json();
-    console.log(33)
-    console.log(result)
+    let tt = "7Cm8Yiyz1OG2QEsRoWO3MU1SN4Be8wQdSEEElsJKft3b7vtP0jlAYjzBo0Kcs8W5Ux84GnnpwXGZcC2RgwYbOyh0CmXedmuyGCBD";
+    let baseURL = 'https://banibank.com';
+    let url = baseURL+'/api/v1/menu/?tt=' + tt;
+    let res = await fetch(url);
+    let mainMenu = await res.json();
+
     return {
-        props: {mainMenu}
+        props: {mainMenu},
     }
 }
 

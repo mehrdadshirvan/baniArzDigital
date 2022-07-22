@@ -10,7 +10,7 @@ import SideBarPostList from "../component/post/sideBarPostList";
 import ListIsEmpty from "../component/listIsEmpty";
 
 function Search(props) {
-    const {post, searchKeyword, suggestionMostView} = props;
+    const {posts,meta, searchKeyword, suggestionMostView} = props;
     return (
         <div id={`app`}
              dir={'rtl'}>
@@ -46,8 +46,8 @@ function Search(props) {
                         </div>
 
                         {
-                            post.length > 0
-                                ? <SuggestionMostView posts={post}/>
+                            posts.length > 0
+                                ? <SuggestionMostView posts={posts} meta={meta}/>
                                 : <ListIsEmpty />
                         }
 
@@ -92,17 +92,32 @@ function Search(props) {
 
 
 export async function getServerSideProps(context) {
-    const searchKeyword = context.query.keyword.length > 0 ? context.query.keyword : '';
+    const searchKeyword = context.query.keyword ? context.query.keyword : '';
     const tt = '7Cm8Yiyz1OG2QEsRoWO3MU1SN4Be8wQdSEEElsJKft3b7vtP0jlAYjzBo0Kcs8W5Ux84GnnpwXGZcC2RgwYbOyh0CmXedmuyGCBD';
     const baseURL = 'https://banibank.com';
     const url = baseURL+'/api/v1/search?keyword=' + searchKeyword + '&tt=' + tt;
 
     const res = await fetch(url);
     const result = await res.json();
-    let post = result.data.post;
-    let suggestionMostView = result.data.suggestionMostView;
+
+
+    const suggestionMostViewUrl = baseURL + '/api/v1/suggestion-posts?tt=' + tt;
+    const suggestionMostViewRes = await fetch(suggestionMostViewUrl);
+    let suggestionMostViewResult = await suggestionMostViewRes.json();
+
+    let posts, meta, suggestionMostView;
+    if (result.status === 'success') {
+        posts = result.data;
+        meta = result.meta;
+        suggestionMostView = suggestionMostViewResult.suggestionMostView;
+    } else {
+        posts = [];
+        meta = [];
+        suggestionMostView = [];
+    }
+
     return {
-        props: {post, searchKeyword, suggestionMostView}
+        props: {posts,meta, searchKeyword, suggestionMostView}
     }
 }
 
